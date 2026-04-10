@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old Spice Cold Spice × _contora — Post-Production Tasks</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #BE051A;
+    --red-light: #E8102E;
+    --bg: #0A0A0A;
+    --bg-card: #141414;
+    --bg-card-hover: #1A1A1A;
+    --text: #F5F5F5;
+    --text-muted: #888888;
+    --text-dim: #555555;
+    --border: #2A2A2A;
+    --tag-vfx: #C44DFF; --tag-vfx-bg: rgba(196,77,255,0.12);
+    --tag-comp: #00D68F; --tag-comp-bg: rgba(0,214,143,0.12);
+    --tag-motion: #FF8A00; --tag-motion-bg: rgba(255,138,0,0.12);
+    --tag-edit: #4DA6FF; --tag-edit-bg: rgba(77,166,255,0.12);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',-apple-system,sans-serif; background:var(--bg); color:var(--text); line-height:1.5; -webkit-font-smoothing:antialiased; }
+
+  /* HERO */
+  .hero { background:var(--red); padding:48px 0 44px; text-align:left; position:relative; overflow:hidden; }
+  .hero::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,0,0,0.25) 0%,transparent 50%,rgba(0,0,0,0.15) 100%); }
+  .hero::after { content:'COLD SPICE'; position:absolute; right:-40px; top:50%; transform:translateY(-50%); font-family:'Space Grotesk',sans-serif; font-size:180px; font-weight:700; color:rgba(255,255,255,0.06); letter-spacing:-6px; white-space:nowrap; pointer-events:none; line-height:1; }
+  .hero-inner { position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:0 40px; display:flex; align-items:center; justify-content:space-between; gap:40px; }
+  .hero-left { flex:1; }
+  .hero-right { flex-shrink:0; text-align:right; }
+  .hero-collab { display:inline-flex; align-items:center; gap:10px; font-size:11px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.8); margin-bottom:16px; background:rgba(0,0,0,0.2); padding:6px 14px; border-radius:100px; }
+  .hero-collab .collab-x { color:rgba(255,255,255,0.4); font-size:14px; }
+  .hero-label { font-size:11px; font-weight:700; letter-spacing:4px; text-transform:uppercase; color:rgba(255,255,255,0.6); margin-bottom:8px; }
+  .hero h1 { font-family:'Space Grotesk',sans-serif; font-size:clamp(40px,6vw,64px); font-weight:700; line-height:1; color:#fff; text-transform:uppercase; letter-spacing:-2px; }
+  .hero h1 span { display:block; font-size:clamp(13px,1.5vw,15px); font-weight:500; letter-spacing:2px; margin-top:12px; opacity:0.75; text-transform:uppercase; }
+  .hero-stat-col { display:flex; flex-direction:column; gap:6px; }
+  .hero-stat-item { text-align:right; }
+  .hero-stat-item .hs-num { font-family:'Space Grotesk',sans-serif; font-size:36px; font-weight:700; color:#fff; line-height:1; }
+  .hero-stat-item .hs-label { font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.5); }
+
+  /* STATS (removed — merged into hero) */
+
+  /* CONTAINER */
+  .container { max-width:1100px; margin:0 auto; padding:0 40px; }
+
+  /* SECTION */
+  .section-block { padding:56px 0 0; }
+  .section-header { display:flex; align-items:center; gap:16px; margin-bottom:8px; }
+  .section-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:20px; flex-shrink:0; }
+  .section-icon.si-comp { background:var(--tag-comp-bg); color:var(--tag-comp); }
+  .section-icon.si-vfx { background:var(--tag-vfx-bg); color:var(--tag-vfx); }
+  .section-icon.si-motion { background:var(--tag-motion-bg); color:var(--tag-motion); }
+  .section-icon.si-edit { background:var(--tag-edit-bg); color:var(--tag-edit); }
+  .section-title { font-family:'Space Grotesk',sans-serif; font-size:28px; font-weight:700; color:var(--text); }
+  .section-line { height:1px; background:var(--border); margin:12px 0 24px; }
+  .section-sub { font-size:14px; color:var(--text-muted); margin-bottom:24px; }
+
+  /* TASK CARD */
+  .task-card {
+    background:var(--bg-card); border:1px solid var(--border); border-radius:10px;
+    display:grid; grid-template-columns:220px 1fr; gap:0;
+    margin-bottom:10px; overflow:hidden; transition:background 0.15s,border-color 0.15s;
+  }
+  .task-card:hover { background:var(--bg-card-hover); border-color:#333; }
+  .task-gif { width:220px; min-height:100%; background-size:cover; background-position:center; border-right:1px solid var(--border); position:relative; }
+  .task-gif::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,transparent 50%,var(--bg-card) 100%); }
+  .task-body { padding:20px 24px; }
+  .task-title { font-size:17px; font-weight:700; margin-bottom:10px; line-height:1.3; }
+
+  /* SUB-BLOCKS inside a card */
+  .sub-block { margin-bottom:16px; }
+  .sub-block:last-child { margin-bottom:0; }
+  .sub-label {
+    font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1px;
+    color:var(--red-light); margin-bottom:6px; display:flex; align-items:center; gap:8px;
+  }
+  .sub-label .sub-badge {
+    font-size:10px; font-weight:600; color:var(--text-muted); background:rgba(255,255,255,0.06);
+    padding:2px 8px; border-radius:3px; letter-spacing:0.5px;
+  }
+  .sub-label .sub-vol {
+    margin-left:auto; font-family:'Space Grotesk',sans-serif; font-size:16px; font-weight:700; color:var(--text);
+  }
+  .sub-label .sub-vol-unit { font-size:10px; color:var(--text-dim); font-weight:600; margin-left:4px; text-transform:uppercase; }
+
+  .task-bullets { list-style:none; padding:0; margin:0; }
+  .task-bullets li { font-size:13px; color:var(--text-muted); line-height:1.6; padding-left:14px; position:relative; }
+  .task-bullets li::before { content:''; position:absolute; left:0; top:8px; width:5px; height:5px; border-radius:50%; background:var(--red); }
+  .task-bullets li strong { color:var(--text); font-weight:600; }
+
+  /* TAGS */
+  .task-meta { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:10px; }
+  .tag { font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:0.8px; padding:4px 10px; border-radius:4px; }
+  .tag-vfx { color:var(--tag-vfx); background:var(--tag-vfx-bg); }
+  .tag-comp { color:var(--tag-comp); background:var(--tag-comp-bg); }
+  .tag-motion { color:var(--tag-motion); background:var(--tag-motion-bg); }
+  .tag-edit { color:var(--tag-edit); background:var(--tag-edit-bg); }
+
+  /* RED STRIP */
+  .red-strip { height:4px; background:var(--red); margin:48px 0; border-radius:2px; }
+
+  /* SUMMARY */
+  .summary-section { padding:60px 0 80px; }
+  .summary-label { font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:700; text-transform:uppercase; letter-spacing:3px; color:var(--red-light); margin-bottom:24px; }
+  .type-breakdown { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:20px; }
+  .type-card { border-radius:10px; padding:20px; text-align:center; }
+  .type-card.tc-comp { background:var(--tag-comp-bg); border:1px solid rgba(0,214,143,0.2); }
+  .type-card.tc-vfx { background:var(--tag-vfx-bg); border:1px solid rgba(196,77,255,0.2); }
+  .type-card.tc-motion { background:var(--tag-motion-bg); border:1px solid rgba(255,138,0,0.2); }
+  .type-card.tc-edit { background:var(--tag-edit-bg); border:1px solid rgba(77,166,255,0.2); }
+  .type-card .tc-num { font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:700; }
+  .tc-comp .tc-num { color:var(--tag-comp); } .tc-vfx .tc-num { color:var(--tag-vfx); }
+  .tc-motion .tc-num { color:var(--tag-motion); } .tc-edit .tc-num { color:var(--tag-edit); }
+  .type-card .tc-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:1px; color:var(--text-muted); margin-top:4px; }
+  .summary-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+  .summary-card { background:var(--bg-card); border:1px solid var(--border); border-radius:10px; padding:24px; }
+  .summary-card .sc-num { font-family:'Space Grotesk',sans-serif; font-size:40px; font-weight:700; color:var(--text); }
+  .summary-card .sc-label { font-size:13px; color:var(--text-muted); margin-top:4px; }
+
+  /* FOOTER */
+  .footer { background:var(--red); padding:40px; text-align:center; }
+  .footer p { font-size:13px; color:rgba(255,255,255,0.7); letter-spacing:1px; }
+  .footer strong { color:#fff; }
+  .footer-collab { font-size:11px; margin-top:8px; color:rgba(255,255,255,0.5); letter-spacing:2px; text-transform:uppercase; }
+
+  @media (max-width:768px) {
+    .stats-inner { grid-template-columns:repeat(2,1fr); }
+    .task-card { grid-template-columns:120px 1fr; }
+    .task-gif { width:120px; }
+    .summary-grid { grid-template-columns:1fr; }
+    .type-breakdown { grid-template-columns:repeat(2,1fr); }
+    .container { padding:0 20px; }
+    .hero { padding:60px 20px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-collab">Old Spice <span class="collab-x">&times;</span> _contora</div>
+      <div class="hero-label">Пост-продакшн</div>
+      <h1>Cold Spice<span>3 скетчі + 5 випусків шоу &middot; 8 відео</span></h1>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-col">
+        <div class="hero-stat-item"><div class="hs-num">17</div><div class="hs-label">Задач</div></div>
+        <div class="hero-stat-item"><div class="hs-num">55+</div><div class="hs-label">Композитних шотів</div></div>
+        <div class="hero-stat-item"><div class="hs-num">6</div><div class="hs-label">Моушн-шаблонів</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ============================================ -->
+<!-- КОМПОЗИТИНГ -->
+<!-- ============================================ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon si-comp">&#9673;</div>
+    <div class="section-title">Композитинг</div>
+  </div>
+  <div class="section-line"></div>
+  <div class="section-sub">Зняття зеленки, заміна фонів, узгодження світла, тіні та відбитки</div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/YolxCGmFscP80bRsX3/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Фони для хромакею</div>
+      <div class="sub-block">
+        <div class="sub-label">Скетчі <span class="sub-badge">4 локації &middot; 2-3 ракурси</span> <span class="sub-vol">8-12 <span class="sub-vol-unit">сетапів</span></span></div>
+        <ul class="task-bullets">
+          <li><strong>Ліфт</strong> — металеві стіни, панель кнопок</li>
+          <li><strong>Кав'ярня</strong> — барна стійка, кавомашина</li>
+          <li><strong>Психолог</strong> — кушетка, приглушене світло, полиці</li>
+          <li><strong>Ванна</strong> — фінальна сцена серії 3</li>
+        </ul>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Шоу <span class="sub-badge">1 локація &middot; один фон на всі випуски</span> <span class="sub-vol">2-3 <span class="sub-vol-unit">сетапи</span></span></div>
+        <ul class="task-bullets">
+          <li>Дантес + гість у крижаній ванні, студійний сетап</li>
+          <li>Один фон на всі 5 випусків</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/SVqy8dLTG3nnCJ3aDb/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Кеїнг та вклейка акторів у фони</div>
+      <div class="sub-block">
+        <div class="sub-label">Скетчі <span class="sub-badge">3 серії &middot; кілька ракурсів</span> <span class="sub-vol">~30+ <span class="sub-vol-unit">шотів</span></span></div>
+        <ul class="task-bullets">
+          <li>Зняття зеленки, корекція країв, узгодження світла</li>
+          <li>Додавання тіней та відбитків</li>
+          <li>Складний кеїнг — волосся та татуювання Дантеса</li>
+        </ul>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Шоу <span class="sub-badge">5 випусків &middot; одна локація</span> <span class="sub-vol">25-40 <span class="sub-vol-unit">шотів</span></span></div>
+        <ul class="task-bullets">
+          <li>Той самий процес, простіше — менше ракурсів</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="red-strip"></div>
+
+<!-- ============================================ -->
+<!-- VFX -->
+<!-- ============================================ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon si-vfx">&#10070;</div>
+    <div class="section-title">VFX</div>
+  </div>
+  <div class="section-line"></div>
+  <div class="section-sub">Ефекти холоду, морозу, частинки, підсилення продуктових шотів</div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/7HtHzMSMGlEyA9ZnUl/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Хвиля холодного повітря / морозу</div>
+      <div class="task-meta"><span class="tag tag-vfx">VFX</span></div>
+      <div class="sub-block">
+        <div class="sub-label">Скетчі <span class="sub-badge">повторюється у всіх 3</span> <span class="sub-vol">3 <span class="sub-vol-unit">варіації</span></span></div>
+        <ul class="task-bullets">
+          <li><strong>Ліфт</strong> — потік холоду при відчиненні дверей</li>
+          <li><strong>Кав'ярня</strong> — холод розкидає серветки</li>
+          <li><strong>Психолог</strong> — морозна аура навколо Дантеса</li>
+          <li>Зробити <strong>базовий пресет</strong>, який адаптується під кожну сцену</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/l3vRm79p4FWynD8sw/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Розлітання серветок (серія Кав'ярня)</div>
+      <div class="task-meta"><span class="tag tag-vfx">VFX</span></div>
+      <ul class="task-bullets">
+        <li>Холодний потік розкидає серветки, обдуває обличчя баристи</li>
+        <li>Практично (повітродувка на зйомці) або CG-серветки в пості</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/nQ0bg6dYbjB2o/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Іній / лід на продукті</div>
+      <div class="task-meta"><span class="tag tag-vfx">VFX</span></div>
+      <div class="sub-label" style="margin-bottom:8px">Усі 8 відео — фінальні кадри <span class="sub-vol">8 <span class="sub-vol-unit">шотів</span></span></div>
+      <ul class="task-bullets">
+        <li>Наростання інію, конденсат, крижані частинки на продуктах</li>
+        <li>Підкреслює позиціонування &laquo;-5&deg;C cooling effect&raquo;</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/hJMwz1nu2zSl1ulgp6/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Пар / лід / холод від ванни</div>
+      <div class="task-meta"><span class="tag tag-vfx">VFX</span></div>
+      <div class="sub-label" style="margin-bottom:8px">Шоу — усі 5 випусків <span class="sub-vol">1 <span class="sub-vol-unit">пресет</span></span></div>
+      <ul class="task-bullets">
+        <li>Крижана ванна — пар, бризки, шматки льоду</li>
+        <li>Візуальне підсилення холоду, якщо ванна — муляж</li>
+        <li>Один ефект, перевикористовується у всіх 5 випусках</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="red-strip"></div>
+
+<!-- ============================================ -->
+<!-- МОУШН-ДИЗАЙН -->
+<!-- ============================================ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon si-motion">&#9670;</div>
+    <div class="section-title">Моушн-дизайн</div>
+  </div>
+  <div class="section-line"></div>
+  <div class="section-sub">Заставки, плашки з іменами, ендкард, текстові вставки, таймер</div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/M086QFWkqo2DC/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Заставки серій / інтро</div>
+      <div class="task-meta"><span class="tag tag-motion">Motion</span></div>
+      <div class="sub-block">
+        <div class="sub-label">Скетчі <span class="sub-badge">червоний фон + білий текст</span> <span class="sub-vol">3 <span class="sub-vol-unit">картки</span></span></div>
+        <ul class="task-bullets">
+          <li>&laquo;Серія 1: Ліфт&raquo;, &laquo;Серія 2: Кав'ярня&raquo; — один шаблон, міняємо назву</li>
+          <li>~2-3 сек кожна</li>
+        </ul>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Шоу <span class="sub-badge">вогонь &rarr; лід перехід</span> <span class="sub-vol">1 <span class="sub-vol-unit">шаблон</span></span></div>
+        <ul class="task-bullets">
+          <li>Брендована заставка &laquo;У мене горить&raquo;, вертикальний 9:16, ~2-3 сек</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/M9tJ0EJz6Z06iiE6B4/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Фінальний ендкард / джингл-пак</div>
+      <div class="task-meta"><span class="tag tag-motion">Motion</span></div>
+      <div class="sub-label" style="margin-bottom:8px">Усі 8 відео <span class="sub-vol">1 <span class="sub-vol-unit">шаблон</span></span></div>
+      <ul class="task-bullets">
+        <li>Лого Old Spice + Cold Spice + &laquo;-5&deg;C cooling effect&raquo;</li>
+        <li>Морозні ефекти на типографіці, ~3-4 сек</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/AWJMNU4wbMa2I/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Плашки з іменами гостей</div>
+      <div class="task-meta"><span class="tag tag-motion">Motion</span></div>
+      <div class="sub-block">
+        <div class="sub-label">Скетчі <span class="sub-badge">горизонтальний 16:9</span> <span class="sub-vol">3 <span class="sub-vol-unit">варіанти</span></span></div>
+        <ul class="task-bullets">
+          <li>Ім'я + підпис (блогер / актор) — брендований червоний/білий стиль</li>
+        </ul>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Шоу <span class="sub-badge">вертикальний 9:16</span> <span class="sub-vol">5 <span class="sub-vol-unit">варіантів</span></span></div>
+        <ul class="task-bullets">
+          <li>Той самий концепт, вертикальний формат для Reels/TikTok</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/e4e34XQ703c0uHJdnf/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Текстові вставки (динамічні)</div>
+      <div class="task-meta"><span class="tag tag-motion">Motion</span></div>
+      <div class="sub-label" style="margin-bottom:8px">Шоу — усі 5 випусків <span class="sub-vol">15-25 <span class="sub-vol-unit">анімацій</span></span></div>
+      <ul class="task-bullets">
+        <li>У стилі TikTok/Reels — ключові фрази вилітають текстом на екран</li>
+        <li>Посилює комічність та залученість</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/d3yxg15kJppJilnW/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Таймер зворотного відліку <span style="font-size:12px;color:var(--text-dim);font-weight:500">(опціонально)</span></div>
+      <div class="task-meta"><span class="tag tag-motion">Motion</span></div>
+      <div class="sub-label" style="margin-bottom:8px">Шоу — усі 5 випусків <span class="sub-vol">1 <span class="sub-vol-unit">шаблон</span></span></div>
+      <ul class="task-bullets">
+        <li>У гостя є хвилина на рант — таймер на екрані</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="red-strip"></div>
+
+<!-- ============================================ -->
+<!-- МОНТАЖ -->
+<!-- ============================================ -->
+<div class="section-block">
+  <div class="section-header">
+    <div class="section-icon si-edit">&#9654;</div>
+    <div class="section-title">Монтаж</div>
+  </div>
+  <div class="section-line"></div>
+  <div class="section-sub">Збірка, кольорокорекція, звук, інтеграція VFX та моушну</div>
+
+  <div class="task-card">
+    <div class="task-gif" style="background-image:url('https://media.giphy.com/media/EOjLLmafDptIIlikEe/giphy.gif')"></div>
+    <div class="task-body">
+      <div class="task-title">Фінальна збірка та монтаж</div>
+      <div class="task-meta"><span class="tag tag-edit">Монтаж</span></div>
+      <div class="sub-block">
+        <div class="sub-label">Скетчі <span class="sub-badge">16:9 горизонтальний</span> <span class="sub-vol">60-90с <span class="sub-vol-unit">кожна</span></span></div>
+        <ul class="task-bullets">
+          <li>Збірка діалогів із кількох ракурсів, тайминг комедійних пауз</li>
+          <li>Вклейка VFX та моушн-елементів</li>
+          <li>Підбір музики / звукових ефектів (звуки холоду)</li>
+          <li>Кольорокорекція з урахуванням хромакею</li>
+        </ul>
+      </div>
+      <div class="sub-block">
+        <div class="sub-label">Шоу <span class="sub-badge">9:16 вертикальний &middot; Reels/TikTok</span> <span class="sub-vol">45-60с <span class="sub-vol-unit">кожний</span></span></div>
+        <ul class="task-bullets">
+          <li>Динамічні зміни ракурсів, вставки реакцій</li>
+          <li>Інтеграція текстових вставок та VFX</li>
+          <li>Кольорокорекція + звукові ефекти</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ПІДСУМОК -->
+<div class="summary-section">
+  <div class="red-strip"></div>
+  <div style="height:48px"></div>
+  <div class="summary-label">Підсумок</div>
+  <div class="type-breakdown">
+    <div class="type-card tc-comp"><div class="tc-num">2</div><div class="tc-label">Композитинг</div></div>
+    <div class="type-card tc-vfx"><div class="tc-num">4</div><div class="tc-label">VFX</div></div>
+    <div class="type-card tc-motion"><div class="tc-num">5</div><div class="tc-label">Моушн</div></div>
+    <div class="type-card tc-edit"><div class="tc-num">1</div><div class="tc-label">Монтаж</div></div>
+  </div>
+  <div class="summary-grid">
+    <div class="summary-card"><div class="sc-num">55+</div><div class="sc-label">Композитних шотів на всі відео</div></div>
+    <div class="summary-card"><div class="sc-num">5</div><div class="sc-label">Фонових локацій (4 скетчі + 1 шоу)</div></div>
+    <div class="summary-card"><div class="sc-num">6</div><div class="sc-label">Переиспользовуваних моушн-шаблонів</div></div>
+  </div>
+</div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p><strong>Old Spice Cold Spice</strong> &middot; Пост-продакшн &middot; 8 відео</p>
+  <div class="footer-collab">Колаборація з _contora post-production</div>
+</div>
+
+</body>
+</html>

@@ -601,7 +601,15 @@
 
     <div class="estimate-total">
       <div class="et-label">Grand Total</div>
-      <div class="et-sum">$7,300<span class="et-currency">USD</span></div>
+      <div class="et-sum" id="est-subtotal-sum">$7,300<span class="et-currency">USD</span></div>
+    </div>
+    <div class="estimate-total" style="margin-top:8px; background:transparent; border:1px solid var(--border); padding:16px 28px;">
+      <div class="et-label" style="font-size:13px; color:var(--text-muted);">Taxes (7%)</div>
+      <div class="et-sum" id="est-tax-sum" style="font-size:22px; color:var(--text-muted);"></div>
+    </div>
+    <div class="estimate-total" style="margin-top:8px;">
+      <div class="et-label">Grand Total incl. Taxes</div>
+      <div class="et-sum" id="est-grand-total"></div>
     </div>
   </div>
   <div style="height:80px"></div>
@@ -622,6 +630,16 @@ function switchTab(tab) {
   document.getElementById('tab-' + tab).classList.add('active');
   event.target.classList.add('active');
 }
+
+function calcTax() {
+  var subtotalEl = document.getElementById('est-subtotal-sum');
+  var subtotal = parseFloat(subtotalEl.textContent.replace(/[^0-9.]/g, ''));
+  var tax = Math.round(subtotal * 0.07);
+  var grand = subtotal + tax;
+  document.getElementById('est-tax-sum').innerHTML = '$' + tax.toLocaleString('en-US') + '<span class="et-currency">USD</span>';
+  document.getElementById('est-grand-total').innerHTML = '$' + grand.toLocaleString('en-US') + '<span class="et-currency">USD</span>';
+}
+calcTax();
 </script>
 </body>
 </html>

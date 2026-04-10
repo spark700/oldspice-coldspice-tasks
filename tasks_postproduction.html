@@ -201,15 +201,65 @@
   .estimate-total .et-sum .et-currency { font-size:16px; color:var(--text-muted); font-weight:600; margin-left:4px; }
 
   @media (max-width:768px) {
-    .stats-inner { grid-template-columns:repeat(2,1fr); }
-    .task-card { grid-template-columns:120px 1fr; }
-    .task-gif { width:120px; }
+    .container { padding:0 16px; }
+
+    /* Hero */
+    .hero { padding:32px 0 28px; }
+    .hero-inner { flex-direction:column; gap:20px; padding:0 16px; }
+    .hero-right { text-align:left; width:100%; }
+    .hero-stat-col { flex-direction:row; gap:20px; }
+    .hero-stat-item { text-align:left; }
+    .hero-stat-item .hs-num { font-size:28px; }
+    .hero h1 { font-size:36px; }
+    .hero::after { display:none; }
+
+    /* Tabs */
+    .tabs-bar { width:100%; }
+    .tab-btn { flex:1; text-align:center; padding:10px 16px; font-size:13px; }
+
+    /* Task cards */
+    .task-card { grid-template-columns:1fr; }
+    .task-gif { width:100%; height:160px; min-height:160px; border-right:none; border-bottom:1px solid var(--border); }
+    .task-gif::after { background:linear-gradient(180deg,transparent 50%,var(--bg-card) 100%); }
+    .task-body { padding:16px; }
+    .task-title { font-size:15px; }
+
+    /* Sections */
+    .section-title { font-size:22px; }
+    .section-block { padding:40px 0 0; }
+
+    /* Summary */
     .summary-grid { grid-template-columns:1fr; }
     .type-breakdown { grid-template-columns:repeat(2,1fr); }
-    .container { padding:0 20px; }
-    .hero { padding:60px 20px 40px; }
-    .tabs-bar { width:100%; }
-    .tab-btn { flex:1; text-align:center; padding:10px 16px; }
+    .summary-card .sc-num { font-size:30px; }
+
+    /* Estimate table */
+    .estimate-table { font-size:12px; }
+    .estimate-table thead th { padding:10px 8px; font-size:9px; letter-spacing:1px; }
+    .estimate-table tbody td { padding:8px; font-size:12px; }
+    .est-cat-row td { font-size:13px !important; padding:20px 8px 8px !important; }
+    .est-subcat td { font-size:11px !important; padding:12px 8px 4px !important; }
+    .est-subtotal td { padding:10px 8px !important; }
+    .est-subtotal td.col-total { font-size:13px; padding:5px 8px !important; }
+    .estimate-total { padding:16px; }
+    .estimate-total .et-label { font-size:13px; }
+    .estimate-total .et-sum { font-size:24px; }
+
+    /* Red strip */
+    .red-strip { margin:32px 0; }
+
+    /* Footer */
+    .footer { padding:28px 16px; }
+  }
+
+  @media (max-width:420px) {
+    .hero-stat-col { flex-wrap:wrap; gap:12px; }
+    .type-breakdown { grid-template-columns:1fr 1fr; gap:8px; }
+    .type-card { padding:14px 10px; }
+    .type-card .tc-num { font-size:24px; }
+    .estimate-table thead th.col-unit { display:none; }
+    .estimate-table tbody td.col-unit { display:none; }
+    .estimate-total .et-sum { font-size:20px; }
   }
 </style>
 </head>

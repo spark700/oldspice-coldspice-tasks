@@ -186,7 +186,8 @@
     color:var(--text-muted);
   }
   .est-subtotal td.col-total {
-    font-family:'Space Grotesk',sans-serif; font-size:16px; color:var(--text) !important;
+    font-family:'Space Grotesk',sans-serif; font-size:14px; color:#fff !important;
+    background:var(--red); padding:6px 12px !important; border-radius:6px;
   }
 
   /* Grand total */
@@ -543,72 +544,64 @@
         <tr><td>Previs</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
         <tr><td>Look development (Styleframes / Look tests)</td><td class="col-qty">1</td><td class="col-unit">150</td><td class="col-total">150</td></tr>
         <tr><td>Asset list</td><td class="col-qty">1</td><td class="col-unit">50</td><td class="col-total">50</td></tr>
-        <tr><td>Pipeline setup: OCIO/ACES</td><td class="col-qty">1</td><td class="col-unit">50</td><td class="col-total">50</td></tr>
-        <tr><td>Shot breakdown &amp; bidding</td><td class="col-qty">1</td><td class="col-unit">100</td><td class="col-total">100</td></tr>
-        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">450</td></tr>
-
-        <!-- ON-SET / DATA CAPTURE -->
-        <tr class="est-cat-row cat-comp"><td colspan="4">On-set / Data Capture</td></tr>
-        <tr><td>VFX/CG Supervisor (on set)</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr><td>HDRI/Chrome/Grey ball capture</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr><td>Lens grids, lens metadata</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr><td>Texture/photo scanning, photogrammetry, LiDAR</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">0</td></tr>
+        <tr><td>Pipeline setup: OCIO/ACES</td><td class="col-qty">1</td><td class="col-unit">80</td><td class="col-total">80</td></tr>
+        <tr><td>Shot breakdown &amp; bidding</td><td class="col-qty">1</td><td class="col-unit">120</td><td class="col-total">120</td></tr>
+        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">500</td></tr>
 
         <!-- ENVIRONMENT -->
         <tr class="est-cat-row cat-vfx"><td colspan="4">Environment</td></tr>
-        <tr><td>Layout &amp; set-dressing</td><td class="col-qty">5</td><td class="col-unit">250</td><td class="col-total">1,250</td></tr>
+        <tr><td>Layout &amp; set-dressing</td><td class="col-qty">5</td><td class="col-unit">160</td><td class="col-total">800</td></tr>
         <tr><td>Terrain/foliage/scatter</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr><td>Matte painting (2D/2.5D/3D), set-extensions, projections</td><td class="col-qty">4</td><td class="col-unit">200</td><td class="col-total">800</td></tr>
-        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">2,050</td></tr>
+        <tr><td>Matte painting (2D/2.5D/3D), set-extensions, projections</td><td class="col-qty">4</td><td class="col-unit">100</td><td class="col-total">400</td></tr>
+        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">1,200</td></tr>
 
         <!-- FX / SIMULATION -->
         <tr class="est-cat-row cat-vfx"><td colspan="4">FX / Simulation</td></tr>
         <tr><td>Water (FLIP, whitewater, meshing)</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr><td>Smoke/Fire (Pyro)</td><td class="col-qty">1</td><td class="col-unit">700</td><td class="col-total">700</td></tr>
-        <tr><td>Cloth / Soft-body</td><td class="col-qty">1</td><td class="col-unit">800</td><td class="col-total">800</td></tr>
+        <tr><td>Smoke/Fire (Pyro)</td><td class="col-qty">1</td><td class="col-unit">600</td><td class="col-total">600</td></tr>
+        <tr><td>Cloth / Soft-body</td><td class="col-qty">1</td><td class="col-unit">500</td><td class="col-total">500</td></tr>
         <tr><td>Destruction (RBD)</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr><td>Particles</td><td class="col-qty">8</td><td class="col-unit">150</td><td class="col-total">1,200</td></tr>
+        <tr><td>Particles</td><td class="col-qty">7</td><td class="col-unit">100</td><td class="col-total">700</td></tr>
         <tr><td>Crowd sim</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">2,700</td></tr>
+        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">1,800</td></tr>
 
         <!-- LIGHTING & RENDERING -->
         <tr class="est-cat-row cat-motion"><td colspan="4">Lighting &amp; Rendering</td></tr>
-        <tr><td>Lookdev (materials/shading)</td><td class="col-qty">1</td><td class="col-unit">100</td><td class="col-total">100</td></tr>
-        <tr><td>Shot lighting</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
+        <tr><td>Lookdev (materials/shading)</td><td class="col-qty">1</td><td class="col-unit">180</td><td class="col-total">180</td></tr>
+        <tr><td>Shot lighting</td><td class="col-qty">1</td><td class="col-unit">120</td><td class="col-total">120</td></tr>
         <tr><td>Optimization (proxy/LOD, cache)</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
         <tr><td>AOVs</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
         <tr><td>Rendering</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">100</td></tr>
+        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">300</td></tr>
 
         <!-- POST-PRODUCTION -->
         <tr class="est-cat-row cat-edit"><td colspan="4">Post-production</td></tr>
 
         <tr class="est-subcat"><td colspan="4">Basic</td></tr>
-        <tr><td>Rotoscoping</td><td class="col-qty">10</td><td class="col-unit">80</td><td class="col-total">800</td></tr>
-        <tr><td>2D Motion / Motion graphics</td><td class="col-qty">6</td><td class="col-unit">400</td><td class="col-total">2,400</td></tr>
-        <tr><td>Cleanup</td><td class="col-qty">1</td><td class="col-unit">200</td><td class="col-total">200</td></tr>
-        <tr><td>Final compositing</td><td class="col-qty">55</td><td class="col-unit">80</td><td class="col-total">4,400</td></tr>
+        <tr><td>Rotoscoping</td><td class="col-qty">10</td><td class="col-unit">35</td><td class="col-total">350</td></tr>
+        <tr><td>2D Motion / Motion graphics</td><td class="col-qty">6</td><td class="col-unit">180</td><td class="col-total">1,080</td></tr>
+        <tr><td>Cleanup</td><td class="col-qty">1</td><td class="col-unit">80</td><td class="col-total">80</td></tr>
+        <tr><td>Final compositing</td><td class="col-qty">55</td><td class="col-unit">18</td><td class="col-total">990</td></tr>
 
         <tr class="est-subcat"><td colspan="4">Tracking</td></tr>
-        <tr><td>Montage &amp; video editing</td><td class="col-qty">8</td><td class="col-unit">400</td><td class="col-total">3,200</td></tr>
+        <tr><td>Montage &amp; video editing</td><td class="col-qty">8</td><td class="col-unit">100</td><td class="col-total">800</td></tr>
         <tr><td>2D tracking (planar, corner-pin)</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
         <tr><td>3D camera solve (match/move)</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
-        <tr><td>Adaptations (vertical + 6sec. versions)</td><td class="col-qty">5</td><td class="col-unit">150</td><td class="col-total">750</td></tr>
+        <tr><td>Adaptations (vertical + 6sec. versions)</td><td class="col-qty">5</td><td class="col-unit">40</td><td class="col-total">200</td></tr>
         <tr><td>Survey/scene alignment, layout</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
 
         <tr class="est-subcat"><td colspan="4">Optional</td></tr>
         <tr><td>Retime (optical flow/interp)</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
         <tr><td>Motion blur add/fix</td><td class="col-qty col-zero">0</td><td class="col-unit col-zero">0</td><td class="col-total col-zero">0</td></tr>
 
-        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">11,750</td></tr>
+        <tr class="est-subtotal"><td colspan="3" class="col-label">Subtotal</td><td class="col-total">3,500</td></tr>
 
       </tbody>
     </table>
 
     <div class="estimate-total">
       <div class="et-label">Grand Total</div>
-      <div class="et-sum">$17,050<span class="et-currency">USD</span></div>
+      <div class="et-sum">$7,300<span class="et-currency">USD</span></div>
     </div>
   </div>
   <div style="height:80px"></div>
